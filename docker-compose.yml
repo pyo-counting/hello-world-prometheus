@@ -1,0 +1,91 @@
+version: '3.8'
+
+services:
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.37.5
+    network_mode: host
+    privileged: true
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: '100m'
+        max-file: '5'
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      # cAdvisor default bind mount
+      - /:/rootfs:ro
+      - /var/run:/var/run
+      - /sys:/sys:ro
+      - /var/lib/docker:/var/lib/docker:ro
+    command:
+      - --housekeeping_interval=10s
+      - --docker_only=true
+      - --store_container_labels=false
+      # valid only host network mode
+      - --enable_load_reader=true
+      - --logtostderr=true
+      - --log_cadvisor_usage=true
+      - --v=0
+#      - --port=11111
+      
+  node_exporter:
+    image: harbor.danal.co.kr/quay_io/prometheus/node-exporter:v1.3.1
+    network_mode: host
+    pid: host
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: '100m'
+        max-file: '5'
+    volumes:
+      # prometheous default bind mount
+      - /:/host:ro,rslave
+    command:
+      - --path.rootfs=/host
+#      - --web.listen-address=:11112
+      
+  prometheus:
+    image: harbor.danal.co.kr/docker_hub/prom/prometheus:v2.32.0
+    network_mode: host
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "5"
+    volumes:
+      - ./prometheus:/etc/prometheus
+      # TSDB volume mount
+      - prometheus:/prometheus
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.retention.size=10GB
+#      - --web.listen-address=:11113
+    
+  grafana:
+    image: harbor.danal.co.kr/docker_hub/grafana/grafana-oss:8.3.3
+    network_mode: host
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: '100m'
+        max-file: '5'
+    volumes:
+      - ./grafana/grafana.ini:/etc/grafana/grafana.ini
+      - ./grafana/provisioning:/etc/grafana/provisioning
+      - ./grafana/cert:/etc/grafana/cert
+      - ./grafana/home.json:/usr/share/grafana/public/dashboards/home.json
+      - grafana:/var/lib/grafana
+    environment:
+      GF_INSTALL_PLUGINS: grafana-clock-panel,mxswat-separator-panel
+      # default environment defined in image
+      GF_PATHS_CONFIG: /etc/grafana/grafana.ini
+      GF_PATHS_DATA: /var/lib/grafana
+      GF_PATHS_HOME: /usr/share/grafana
+      GF_PATHS_LOGS: /var/log/grafana
+      GF_PATHS_PLUGINS: /var/lib/grafana/plugins
+      GF_PATHS_PROVISIONING: /etc/grafana/provisioning
+      
+volumes:
+  prometheus:
+  grafana:

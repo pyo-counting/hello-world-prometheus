@@ -30,7 +30,7 @@ services:
 #      - --port=11111
       
   node_exporter:
-    image: harbor.danal.co.kr/quay_io/prometheus/node-exporter:v1.3.1
+    image: quay.io/prometheus/node-exporter:v1.3.1
     network_mode: host
     pid: host
     logging:
@@ -46,7 +46,7 @@ services:
 #      - --web.listen-address=:11112
       
   prometheus:
-    image: harbor.danal.co.kr/docker_hub/prom/prometheus:v2.32.0
+    image: prom/prometheus:v2.32.0
     network_mode: host
     logging:
       driver: "json-file"
@@ -62,8 +62,19 @@ services:
       - --storage.tsdb.retention.size=10GB
 #      - --web.listen-address=:11113
     
+  alertmanager:
+    image: prom/alertmanager:v0.22.2
+    network_mode: host
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: '100m'
+        max-file: '5'
+    volumes:
+      - ./alertmanager:/etc/alertmanager
+      
   grafana:
-    image: harbor.danal.co.kr/docker_hub/grafana/grafana-oss:8.3.3
+    image: grafana/grafana-oss:8.3.3
     network_mode: host
     logging:
       driver: 'json-file'

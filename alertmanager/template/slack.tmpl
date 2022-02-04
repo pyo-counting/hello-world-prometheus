@@ -1,0 +1,44 @@
+{{ define "slack.color" }}
+	{{- if eq .Status "firing" -}}
+		{{- if eq .CommonLabels.severity "warning" -}}
+		warning
+		{{- else if eq .CommonLabels.severity "critical" -}}
+		danger
+		{{- else -}}
+		#439FE0
+		{{- end -}}
+	{{- else -}}
+	good
+	{{- end -}}
+{{- end }}
+
+
+{{ define "slack.title" }}
+	[{{- .Status | toUpper -}}
+	{{- if eq .Status "firing" }}|{{ .CommonLabels.severity | toUpper }}{{ end -}}|
+        {{- .Alerts | len }}] {{ .CommonLabels.alertname -}}
+{{- end }}
+
+
+
+{{ define "slack.text" }}
+	*Alert details*:
+	{{ range .Alerts }}
+	:white_small_square: *Description*: {{ .Annotations.description }}
+	:white_small_square: *Expression*: {{ .Annotations.expression }}
+	:white_small_square: *Value*: {{ .Annotations.value }}
+	:white_small_square: *StartsAt*: {{ .StartsAt }}
+        	{{- if eq .Status "resolved" }}
+	:white_small_square: *EndsAt*: {{ .EndsAt }}
+		{{- end }}
+	:white_small_square: *Labels*:
+		{{ range .Labels.SortedPairs }} :black_small_square: *{{ .Name }}*: `{{ .Value }}`
+		{{ end -}}
+	{{ end -}}
+{{ end }}
+
+
+{{ define "slack.username" }}Alertmanager{{ end }}
+{{ define "slack.channel" }}monitoring{{ end }}
+{{ define "slack.icon_emoji" }}::desktop_computer::{{ end }}
+{{ define "slack.title_link" }}{{ end }}

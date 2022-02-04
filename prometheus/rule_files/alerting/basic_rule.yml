@@ -1,0 +1,134 @@
+groups:
+  - name: MonitoringComponent
+    rules:
+      - alert: HealthCheckScrapeInstance
+        expr: up == 0
+        labels:
+          instance: '{{ .Labels.instance }}'
+          job: '{{ .Labels.job }}'
+          severity: critical
+        annotations:
+          description: '{{ .Labels.job }} target missing at instance {{ .Labels.instance }}'
+          expression: 'up == 0'
+          value: '{{ .Value }}'
+
+
+  - name: Host
+    rules:
+      - alert: HostAvailableMemory
+        expr: (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100 < 20
+        labels:
+          instance: '{{ .Labels.instance }}'
+          job: '{{ .Labels.job }}'
+          severity: warning
+        annotations:
+          description: 'Host Available Memory is low( < 20% left) at instance {{ .Labels.instance }}'
+          expression: '(node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100 < 20'
+          value: '{{ .Value }}'
+
+      - alert: HostCpuUsage
+        expr: 100 - (avg by (instance) (rate(node_cpu_seconds_total{mode="idle"}[1m])) * 100) > 80
+        labels:
+          instance: '{{ .Labels.instance }}'
+          job: '{{ .Labels.job }}'
+          severity: warning
+        annotations:
+          description: 'Host CPU usage is high( > 80% over) at instance {{ .Labels.instance }}'
+          expression: '100 - (avg by (instance) (rate(node_cpu_seconds_total{mode="idle"}[1m])) * 100) > 80'
+          value: '{{ .Value }}'
+
+      - alert: HostSwapUsage
+        expr: (1- (node_memory_SwapFree_bytes / node_memory_SwapTotal_bytes)) * 100 > 80
+        labels:
+          instance: '{{ .Labels.instance }}'
+          job: '{{ .Labels.job }}'
+          severity: warning
+        annotations:
+          description: 'Host Swap usage is high( > 80% over) at instance {{ .Labels.instance }}'
+          expression: '(1- (node_memory_SwapFree_bytes / node_memory_SwapTotal_bytes)) * 100 > 80'
+          value: '{{ .Value }}'
+
+      - alert: HostLoadAvgPerCoreFor5m
+        expr: (node_load5 / count by (instance, job) (node_cpu_seconds_total{mode="idle"})) > 0.7
+        labels:
+          instance: '{{ .Labels.instance }}'
+          job: '{{ .Labels.job }}'
+          severity: warning
+        annotations:
+          description: 'Host LoadAvg(per core) for 5m is high( > 0.7 over) at instance {{ .Labels.instance }}'
+          expression: '(node_load5 / count by (instance, job) (node_cpu_seconds_total{mode="idle"})) > 0.7' 
+          value: '{{ .Value }}'
+
+
+      - alert: HostLoadAvgPerCoreFor15m
+        expr: (node_load15 / count by (instance, job) (node_cpu_seconds_total{mode="idle"})) > 0.7
+        labels:
+          instance: '{{ .Labels.instance }}'
+          job: '{{ .Labels.job }}'
+          severity: warning
+        annotations:
+          description: 'Host LoadAvg(per core) for 15m is high( > 0.7 over) at instance {{ .Labels.instance }}'
+          expression: '(node_load15 / count by (instance, job) (node_cpu_seconds_total{mode="idle"})) > 0.7'
+          value: '{{ .Value }}'
+
+  - name: Container
+    rules:
+      - alert: ContainerKilled
+        expr: time() - container_last_seen{name!="/"} > 30
+        labels:
+          instance: '{{ .Labels.instance }}'
+          job: '{{ .Labels.job }}'
+          severity: warning
+          containername: '{{ .Labels.name }}'
+        annotations:
+          description: 'Container(name: {{ .Labels.name }}) killed at instance {{ .Labels.instance }}'
+          expression: 'time() - container_last_seen{name!="/"} > 30'
+          value: '{{ .Value }}'
+
+      - alert: ContainerCpuUsage
+        expr: avg by (name, instance) (rate(container_cpu_system_seconds_total{name!="/"}[1m])) * 100 > 80
+        labels:
+          instance: '{{ .Labels.instance }}'
+          job: '{{ .Labels.job }}'
+          severity: warning
+          containername: '{{ .Labels.name }}'
+        annotations:
+          description: 'Container(name: {{ .Labels.name }}) CPU usage is high( > 80% over) at instance {{ .Labels.instance }}'
+          expression: 'avg by (name, instance) (rate(container_cpu_system_seconds_total{name!="/"}[1m]) * 100 > 80'
+          value: '{{ .Value }}'
+
+      - alert: ContainerWorkingSetMemoryUsage 
+        expr: (container_memory_working_set_bytes / (container_spec_memory_limit_bytes{name!="/"} > 0)) * 100 > 80
+        labels:
+          instance: '{{ .Labels.instance }}'
+          job: '{{ .Labels.job }}'
+          severity: warning
+          containername: '{{ .Labels.name }}'
+        annotations:
+          description: 'Container(name: {{ .Labels.name }}) WorkingSet Memory usage is high( > 80% over) at instance {{ .Labels.instance }}'
+          expression: '(container_memory_working_set_bytes / (container_spec_memory_limit_bytes{name!="/"} > 0)) * 100 > 80'
+          value: '{{ .Value }}'
+
+      - alert: ContainerRssMemoryUsage
+        expr: (container_memory_rss / (container_spec_memory_limit_bytes{name!="/"} > 0)) * 100 > 80
+        labels:
+          instance: '{{ .Labels.instance }}'
+          job: '{{ .Labels.job }}'
+          severity: warning
+          containername: '{{ .Labels.name }}'
+        annotations:
+          description: 'Container(name: {{ .Labels.name }}) Rss Memory usage is high( > 80% over) at instance {{ .Labels.instance }}'
+          expression: '(container_memory_rss / (container_spec_memory_limit_bytes{name!="/"} > 0)) * 100 > 80'
+          value: '{{ .Value }}'
+
+      - alert: ContainerSwapUsage
+        expr: (container_memory_swap{name!="/"} / ((container_spec_memory_swap_limit_bytes > 0) - container_spec_memory_limit_bytes)) * 100 > 80
+        labels:
+          instance: '{{ .Labels.instance }}'
+          job: '{{ .Labels.job }}'
+          severity: warning
+          containername: '{{ .Labels.name }}'
+        annotations:
+          description: 'Container(name: {{ .Labels.name }}) Swap usage is high( > 80% over) at instance {{ .Labels.instance }}'
+          expression: 
+          value: '{{ .Value }}'

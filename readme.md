@@ -8,8 +8,10 @@ Prometheus hello world 프로젝트
 정상 설치 및 실행하기 위해 사용자 환경에 따라 기본적으로 변경되어야 하는 설정은 다음과 같다.
 
 - Prometheus:
+    - ./prometheus/prometheus.yml
+        - alerting.alertmanagers.static_configs.targets: alertmanager endpoint 설정 필요
     - ./prometheus/sd_configs/file/*.yml
-        - scrape target 추가를 위한 endpoint(IP 및 PORT 정보) 설정 필요        
+        - scrape target 추가를 위한 endpoint(IP 및 PORT 정보) 설정 필요
 - Grafana:
     - ./grafana/cert/*
         - HTTPS 인증서 및 키 파일 추가 필요
@@ -19,6 +21,9 @@ Prometheus hello world 프로젝트
         - security.admin_password: Grafana 관리자 계정 비밀번호 설정 필요
     - ./grafana/provisioning/datasources/datasources.yml
         - datasources.url: Prometheus endpoint 설정 필요
+- Alertmanager:
+    - ./alertmanager/alertmanager.yml
+        - global.slack_api_url: slack webhook URL 설정 필요
 
 ## 3. Installation
 Docker를 이용해 설치 및 실행하며 여러 docker image를 사용하기 때문에 docker-compose를 이용해 container를 관리한다.
@@ -38,6 +43,7 @@ Docker를 이용해 설치 및 실행하며 여러 docker image를 사용하기 
 - SpringBoot (maven dependency):
     - spring-boot-starter-parent: [2.3.1.RELEASE](https://github.com/spring-projects/spring-boot/releases/tag/v2.3.1.RELEASE)
     - micrometer-registry-prometheus: [1.8.2](https://github.com/micrometer-metrics/micrometer/releases/tag/v1.8.2)
+- Alertmanager: [v0.22.2](https://github.com/prometheus/alertmanager/releases/tag/v0.22.2)
     
 ### 3.3 Step by step
 1. project clone하기
@@ -70,6 +76,7 @@ Docker를 이용해 설치 및 실행하며 여러 docker image를 사용하기 
 - [Node-exporter](https://github.com/prometheus/node_exporter)
 - [Grafana](https://grafana.com/docs/grafana/latest/)
 - [SpringBoot](https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html)
+- [Alertmanager](https://prometheus.io/docs/alerting/latest/overview/)
 
 ## 5. Etc
 - Architecture overview은 [draw.io](https://www.draw.io)를 통해 작성

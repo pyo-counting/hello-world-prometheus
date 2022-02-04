@@ -16,6 +16,7 @@ Prometheus hello world 프로젝트
     - ./grafana/grafana.ini
         - server.domain: 도메인 설정 필요
         - server.cert_file, server.cert_key: 인증서 관련 파일 경로 설정 필요
+        - security.admin_password: Grafana 관리자 계정 비밀번호 설정 필요
     - ./grafana/provisioning/datasources/datasources.yml
         - datasources.url: Prometheus endpoint 설정 필요
 
@@ -34,7 +35,9 @@ Docker를 이용해 설치 및 실행하며 여러 docker image를 사용하기 
 - Cadvisor: [v0.37.5](https://github.com/google/cadvisor/releases/tag/v0.37.5)
 - Node-exporter: [v1.3.1](https://github.com/prometheus/node_exporter/releases/tag/v1.3.1)
 - Grafana: [8.3.3](https://github.com/grafana/grafana/releases/tag/v8.3.3)
-
+- SpringBoot (maven dependency):
+    - spring-boot-starter-parent: [2.3.1.RELEASE](https://github.com/spring-projects/spring-boot/releases/tag/v2.3.1.RELEASE)
+    - micrometer-registry-prometheus: [1.8.2](https://github.com/micrometer-metrics/micrometer/releases/tag/v1.8.2)
 ## 3.3 Step by step
 1. project clone하기
    ```
@@ -42,7 +45,7 @@ Docker를 이용해 설치 및 실행하며 여러 docker image를 사용하기 
    ```
 2. 프로젝트 디렉토리로 이동
    ```
-   cd hello-world-prometheus.git
+   cd hello-world-prometheus
    ```
 3. docker-compose 실행 및 확인
    ```
@@ -65,6 +68,8 @@ Docker를 이용해 설치 및 실행하며 여러 docker image를 사용하기 
 - [Cadvisor](https://github.com/google/cadvisor)
 - [Node-exporter](https://github.com/prometheus/node_exporter)
 - [Grafana](https://grafana.com/docs/grafana/latest/)
+- [SpringBoot](https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html)
 
 ## 5. Etc
+- Architecture overview은 [draw.io](https://www.draw.io)를 통해 작성
 - Prometheus에 대한 고가용성(High Availability)을 위해 [Cortex](https://cortexmetrics.io/docs/)를 이용할 수 있으며 관련해서는 [hello-world-cortex]() 프로젝트 참고

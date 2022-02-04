@@ -23,7 +23,7 @@ Prometheus hello world 프로젝트
 ## 3. Installation
 Docker를 이용해 설치 및 실행하며 여러 docker image를 사용하기 때문에 docker-compose를 이용해 container를 관리한다.
 
-## 3.1 Execution environment info
+### 3.1 Execution environment info
 해당 프로젝트는 아래 환경에서 정상 동작했음을 테스트했다.
 - OS: CentOS Linux release 7.8.2003 (Core)
 - Kernel version: 3.10.0-1127.18.2.el7.x86_64 #1 SMP Sun Jul 26 15:27:06 UTC 2020
@@ -38,7 +38,8 @@ Docker를 이용해 설치 및 실행하며 여러 docker image를 사용하기 
 - SpringBoot (maven dependency):
     - spring-boot-starter-parent: [2.3.1.RELEASE](https://github.com/spring-projects/spring-boot/releases/tag/v2.3.1.RELEASE)
     - micrometer-registry-prometheus: [1.8.2](https://github.com/micrometer-metrics/micrometer/releases/tag/v1.8.2)
-## 3.3 Step by step
+    
+### 3.3 Step by step
 1. project clone하기
    ```
    git clone https://github.com/pyo-counting/hello-world-prometheus.git
@@ -57,7 +58,7 @@ Docker를 이용해 설치 및 실행하며 여러 docker image를 사용하기 
    docker-compsoe down -v
    ```
 
-## 3.4 Grafana dashboard overview
+### 3.4 Grafana dashboard overview
 <p float="left">
   <img src="images/grafana_spring_dashboar.png" width="400" />
   <img src="images/grafana_overview_dashboard.png" width="400" />

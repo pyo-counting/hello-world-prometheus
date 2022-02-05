@@ -5,7 +5,7 @@ global:
 #  evaluation_interval: 5s
 #  query_log_file: /prometheus/query.log
 
-# rule_files:
+rule_files:
   - rule_files/alerting/*.yml
 #  - rule_files/recording/*.yml
 

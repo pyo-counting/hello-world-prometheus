@@ -21,8 +21,8 @@
   "editable": false,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 5,
-  "iteration": 1643799381130,
+  "id": 2,
+  "iteration": 1648879948941,
   "links": [
     {
       "asDropdown": true,
@@ -101,7 +101,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "node_uname_info{instance=\"$instance\"}",
@@ -173,7 +173,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "node_boot_time_seconds{instance=\"$instance\"} * 1000",
@@ -233,7 +233,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "timestamp(node_boot_time_seconds{instance=\"$instance\"}) - node_boot_time_seconds{instance=\"$instance\"}",
@@ -282,7 +282,7 @@
           "zoneFormat": "name"
         }
       },
-      "pluginVersion": "1.2.0",
+      "pluginVersion": "1.3.0",
       "type": "grafana-clock-panel"
     },
     {
@@ -333,7 +333,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "node_memory_MemTotal_bytes{instance=\"$instance\"}",
@@ -394,7 +394,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "node_memory_SwapTotal_bytes{instance=\"$instance\"}",
@@ -454,7 +454,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "count(node_cpu_seconds_total{mode=\"idle\", instance=\"$instance\"})",
@@ -514,7 +514,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "count(container_start_time_seconds{instance=\"$instance\", name!=\"/\"})",
@@ -586,7 +586,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "node_load1{instance=\"$instance\"}",
@@ -598,7 +598,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "node_load5{instance=\"$instance\"}",
@@ -610,7 +610,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "node_load15{instance=\"$instance\"}",
@@ -675,7 +675,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "sum(rate(node_cpu_seconds_total{instance=\"$instance\", mode=\"idle\"}[$__rate_interval])) /\nscalar(sum(rate(node_cpu_seconds_total{instance=\"$instance\"}[$__rate_interval])) + sum(rate(node_cpu_guest_seconds_total{instance=\"$instance\"}[$__rate_interval])))",
@@ -740,7 +740,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "node_memory_MemAvailable_bytes{instance=\"$instance\"} / node_memory_MemTotal_bytes{instance=\"$instance\"}",
@@ -805,7 +805,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "(node_memory_MemTotal_bytes{instance=\"$instance\"} - node_memory_MemFree_bytes{instance=\"$instance\"}) / node_memory_MemTotal_bytes{instance=\"$instance\"}",
@@ -870,7 +870,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "1 - (node_memory_SwapFree_bytes{instance=\"$instance\"} / node_memory_SwapTotal_bytes{instance=\"$instance\"})",
@@ -983,7 +983,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "sum by (mode) (rate(node_cpu_seconds_total{instance=\"$instance\"}[$__rate_interval])) /\nscalar(sum(rate(node_cpu_seconds_total{instance=\"$instance\"}[$__rate_interval])) + sum(rate(node_cpu_guest_seconds_total{instance=\"$instance\"}[$__rate_interval])))",
@@ -995,7 +995,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "sum by (mode) (rate(node_cpu_guest_seconds_total{instance=\"$instance\"}[$__rate_interval])) /\nscalar(sum(rate(node_cpu_seconds_total{instance=\"$instance\"}[$__rate_interval])) + sum(rate(node_cpu_guest_seconds_total{instance=\"$instance\"}[$__rate_interval])))",
@@ -1091,7 +1091,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "avg by(name)(rate(container_cpu_usage_seconds_total{name!=\"/\", instance=\"$instance\"}[$__rate_interval]))",
@@ -1195,16 +1195,17 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
-          "expr": "process_cpu_usage{instance=\"$instance\"}",
+          "expr": "rate(process_cpu_seconds_total{instance=\"$instance\", application=~\".+\"}[$__rate_interval])",
+          "hide": false,
           "interval": "",
           "legendFormat": "{{application}}",
           "refId": "A"
         }
       ],
-      "title": "Usage by Spring (stack)",
+      "title": "Usage by JVM (stack)",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -1311,7 +1312,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "node_memory_MemAvailable_bytes{instance=\"$instance\"}",
@@ -1323,7 +1324,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "node_memory_MemFree_bytes{instance=\"$instance\"}",
@@ -1417,7 +1418,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "node_memory_MemTotal_bytes{instance=\"$instance\"} - node_memory_MemFree_bytes{instance=\"$instance\"}",
@@ -1429,7 +1430,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "node_memory_Active_anon_bytes{instance=\"$instance\"} + node_memory_Inactive_anon_bytes{instance=\"$instance\"}",
@@ -1524,7 +1525,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "node_memory_Buffers_bytes{instance=\"$instance\"}",
@@ -1536,7 +1537,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "node_memory_Cached_bytes{instance=\"$instance\"}",
@@ -1731,17 +1732,17 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
-          "expr": "sum by (application) (jvm_memory_used_bytes{instance=\"$instance\"})",
+          "expr": "process_resident_memory_bytes{instance=\"$instance\", application=~\".+\"}",
           "hide": false,
           "interval": "",
           "legendFormat": "{{application}}",
           "refId": "B"
         }
       ],
-      "title": "Usage by Spring (stack)",
+      "title": "RSS Usage by JVM (stack)",
       "transformations": [
         {
           "id": "renameByRegex",

@@ -106,7 +106,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "process_start_time_seconds{instance=\"$instance\", application=\"$application\"} * 1000",
@@ -167,7 +167,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "process_uptime_seconds{instance=\"$instance\", application=\"$application\"}",
@@ -178,66 +178,6 @@
         }
       ],
       "title": "Uptime",
-      "type": "stat"
-    },
-    {
-      "description": "Number of processors available to the JVM",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 2,
-        "x": 6,
-        "y": 1
-      },
-      "id": 2,
-      "options": {
-        "colorMode": "none",
-        "graphMode": "none",
-        "justifyMode": "center",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "/^total$/",
-          "values": false
-        },
-        "textMode": "value"
-      },
-      "pluginVersion": "8.3.3",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus_datasource"
-          },
-          "exemplar": false,
-          "expr": "system_cpu_count{instance=\"$instance\"}",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "total",
-          "refId": "A"
-        }
-      ],
-      "title": "CPU Cores",
       "type": "stat"
     },
     {
@@ -264,7 +204,7 @@
       "gridPos": {
         "h": 3,
         "w": 3,
-        "x": 8,
+        "x": 6,
         "y": 1
       },
       "id": 4,
@@ -287,7 +227,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "process_files_max_files{instance=\"$instance\", application=\"$application\"}",
@@ -372,7 +312,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "sum(rate(hikaricp_connections_usage_seconds_count{instance=\"$instance\", application=\"$application\"}[$__rate_interval]))",
@@ -384,7 +324,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "sum(rate(hikaricp_connections_usage_seconds_sum{instance=\"$instance\", application=\"$application\"}[$__rate_interval])) / sum(rate(hikaricp_connections_usage_seconds_count{instance=\"$instance\", application=\"$application\"}[$__rate_interval]))",
@@ -396,7 +336,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "sum(rate(hikaricp_connections_acquire_seconds_count{instance=\"$instance\", application=\"$application\"}[$__rate_interval]))",
@@ -408,7 +348,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "sum(rate(hikaricp_connections_acquire_seconds_sum{instance=\"$instance\", application=\"$application\"}[$__rate_interval])) / sum(rate(hikaricp_connections_acquire_seconds_count{instance=\"$instance\", application=\"$application\"}[$__rate_interval]))",
@@ -508,7 +448,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "jvm_classes_loaded_classes{instance=\"$instance\", application=\"$application\"}",
@@ -569,7 +509,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "process_files_open_files{instance=\"$instance\", application=\"$application\"}",
@@ -630,7 +570,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "sum(jvm_memory_used_bytes{instance=\"$instance\", application=\"$application\"})",
@@ -691,7 +631,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "process_cpu_usage{instance=\"$instance\", application=\"$application\"}",
@@ -788,7 +728,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "sum(rate(http_server_requests_seconds_count{instance=\"$instance\", application=\"$application\"}[$__rate_interval]))",
@@ -800,7 +740,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "sum(rate(http_server_requests_seconds_sum{instance=\"$instance\", application=\"$application\"}[$__rate_interval])) / sum(rate(http_server_requests_seconds_count{instance=\"$instance\", application=\"$application\"}[$__rate_interval]))",
@@ -812,7 +752,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "sum(rate(http_server_requests_seconds_count{instance=\"$instance\", application=\"$application\", status=~\"2..\"}[$__rate_interval])) / sum(rate(http_server_requests_seconds_count{instance=\"$instance\", application=\"$application\"}[$__rate_interval]))",
@@ -937,7 +877,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "sum by (uri) (rate(http_server_requests_seconds_count{instance=\"$instance\", application=\"$application\"}[$__rate_interval]))",
@@ -948,7 +888,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "sum(rate(http_server_requests_seconds_count{instance=\"$instance\", application=\"$application\"}[$__rate_interval]))",
@@ -1060,7 +1000,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "sum by (uri) (rate(http_server_requests_seconds_sum{instance=\"$instance\", application=\"$application\"}[$__rate_interval])) / sum by (uri) (rate(http_server_requests_seconds_count{instance=\"$instance\", application=\"$application\"}[$__rate_interval]))",
@@ -1071,7 +1011,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "sum (rate(http_server_requests_seconds_sum{instance=\"$instance\", application=\"$application\"}[$__rate_interval])) / sum (rate(http_server_requests_seconds_count{instance=\"$instance\", application=\"$application\"}[$__rate_interval]))",
@@ -1184,7 +1124,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "sum by (uri) (rate(http_server_requests_seconds_count{instance=\"$instance\", application=\"$application\", status=~\"2..\"}[$__rate_interval])) / sum by (uri) (rate(http_server_requests_seconds_count{instance=\"$instance\", application=\"$application\"}[$__rate_interval]))",
@@ -1195,7 +1135,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "sum(rate(http_server_requests_seconds_count{instance=\"$instance\", application=\"$application\", status=~\"2..\"}[$__rate_interval])) / sum(rate(http_server_requests_seconds_count{instance=\"$instance\", application=\"$application\"}[$__rate_interval]))",
@@ -1303,7 +1243,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus_datasource"
+                "uid": "cortex_datasource"
               },
               "exemplar": false,
               "expr": "sum(rate(http_server_requests_seconds_count{instance=\"$instance\", application=\"$application\", uri=\"${uri:raw}\"}[$__rate_interval]))",
@@ -1400,7 +1340,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus_datasource"
+                "uid": "cortex_datasource"
               },
               "exemplar": false,
               "expr": "sum by (status) (rate(http_server_requests_seconds_count{instance=\"$instance\", application=\"$application\", uri=\"${uri:raw}\"}[$__rate_interval]))",
@@ -1497,7 +1437,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus_datasource"
+                "uid": "cortex_datasource"
               },
               "exemplar": false,
               "expr": "sum(rate(http_server_requests_seconds_sum{instance=\"$instance\", application=\"$application\", uri=\"${uri:raw}\"}[$__rate_interval])) / sum(rate(http_server_requests_seconds_count{instance=\"$instance\", application=\"$application\", uri=\"${uri:raw}\"}[$__rate_interval]))",
@@ -1509,7 +1449,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus_datasource"
+                "uid": "cortex_datasource"
               },
               "exemplar": false,
               "expr": "max(http_server_requests_seconds_max{instance=\"$instance\", application=\"$application\", uri=\"${uri:raw}\"})",
@@ -1639,7 +1579,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "rate(hikaricp_connections_usage_seconds_count{instance=\"$instance\", application=\"$application\"}[$__rate_interval])",
@@ -1653,7 +1593,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "sum(rate(hikaricp_connections_usage_seconds_count{instance=\"$instance\", application=\"$application\"}[$__rate_interval]))",
@@ -1765,7 +1705,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "rate(hikaricp_connections_acquire_seconds_count{instance=\"$instance\", application=\"$application\"}[$__rate_interval])",
@@ -1779,7 +1719,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "sum(rate(hikaricp_connections_acquire_seconds_count{instance=\"$instance\", application=\"$application\"}[$__rate_interval]))",
@@ -1891,7 +1831,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "rate(hikaricp_connections_creation_seconds_count{instance=\"$instance\", application=\"$application\"}[$__rate_interval])",
@@ -1905,7 +1845,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "sum(rate(hikaricp_connections_creation_seconds_count{instance=\"$instance\", application=\"$application\"}[$__rate_interval]))",
@@ -2017,7 +1957,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "rate(hikaricp_connections_usage_seconds_sum{instance=\"$instance\", application=\"$application\"}[$__rate_interval]) / rate(hikaricp_connections_usage_seconds_count{instance=\"$instance\", application=\"$application\"}[$__rate_interval])",
@@ -2031,7 +1971,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "sum(rate(hikaricp_connections_usage_seconds_sum{instance=\"$instance\", application=\"$application\"}[$__rate_interval])) / sum(rate(hikaricp_connections_usage_seconds_count{instance=\"$instance\", application=\"$application\"}[$__rate_interval]))",
@@ -2143,7 +2083,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "rate(hikaricp_connections_acquire_seconds_sum{instance=\"$instance\", application=\"$application\"}[$__rate_interval]) / rate(hikaricp_connections_acquire_seconds_count{instance=\"$instance\", application=\"$application\"}[$__rate_interval])",
@@ -2157,7 +2097,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "sum(rate(hikaricp_connections_acquire_seconds_sum{instance=\"$instance\", application=\"$application\"}[$__rate_interval])) / sum(rate(hikaricp_connections_acquire_seconds_count{instance=\"$instance\", application=\"$application\"}[$__rate_interval]))",
@@ -2269,7 +2209,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "rate(hikaricp_connections_creation_seconds_sum{instance=\"$instance\", application=\"$application\"}[$__rate_interval]) / rate(hikaricp_connections_creation_seconds_count{instance=\"$instance\", application=\"$application\"}[$__rate_interval])",
@@ -2283,7 +2223,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "sum(rate(hikaricp_connections_creation_seconds_sum{instance=\"$instance\", application=\"$application\"}[$__rate_interval])) / sum(rate(hikaricp_connections_creation_seconds_count{instance=\"$instance\", application=\"$application\"}[$__rate_interval]))",
@@ -2415,7 +2355,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus_datasource"
+                "uid": "cortex_datasource"
               },
               "exemplar": false,
               "expr": "hikaricp_connections{instance=\"$instance\", application=\"$application\", pool=\"${hikari_cp:raw}\"}",
@@ -2429,7 +2369,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus_datasource"
+                "uid": "cortex_datasource"
               },
               "exemplar": false,
               "expr": "hikaricp_connections_pending{instance=\"$instance\", application=\"$application\", pool=\"${hikari_cp:raw}\"}",
@@ -2441,7 +2381,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus_datasource"
+                "uid": "cortex_datasource"
               },
               "exemplar": false,
               "expr": "hikaricp_connections_active{instance=\"$instance\", application=\"$application\", pool=\"${hikari_cp:raw}\"}",
@@ -2453,7 +2393,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus_datasource"
+                "uid": "cortex_datasource"
               },
               "exemplar": false,
               "expr": "hikaricp_connections_idle{instance=\"$instance\", application=\"$application\", pool=\"${hikari_cp:raw}\"}",
@@ -2465,7 +2405,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus_datasource"
+                "uid": "cortex_datasource"
               },
               "exemplar": false,
               "expr": "hikaricp_connections_max{instance=\"$instance\", application=\"$application\", pool=\"${hikari_cp:raw}\"}",
@@ -2477,7 +2417,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus_datasource"
+                "uid": "cortex_datasource"
               },
               "exemplar": false,
               "expr": "hikaricp_connections_min{instance=\"$instance\", application=\"$application\", pool=\"${hikari_cp:raw}\"}",
@@ -2574,7 +2514,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus_datasource"
+                "uid": "cortex_datasource"
               },
               "exemplar": false,
               "expr": "rate(hikaricp_connections_timeout_total{instance=\"$instance\", application=\"$application\", pool=\"${hikari_cp:raw}\"}[$__rate_interval])",
@@ -2674,7 +2614,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus_datasource"
+                "uid": "cortex_datasource"
               },
               "exemplar": false,
               "expr": "rate(hikaricp_connections_usage_seconds_count{instance=\"$instance\", application=\"$application\", pool=\"${hikari_cp:raw}\"}[$__rate_interval])",
@@ -2774,7 +2714,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus_datasource"
+                "uid": "cortex_datasource"
               },
               "exemplar": false,
               "expr": "rate(hikaricp_connections_acquire_seconds_count{instance=\"$instance\", application=\"$application\", pool=\"${hikari_cp:raw}\"}[$__rate_interval])",
@@ -2874,7 +2814,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus_datasource"
+                "uid": "cortex_datasource"
               },
               "exemplar": false,
               "expr": "rate(hikaricp_connections_creation_seconds_count{instance=\"$instance\", application=\"$application\", pool=\"${hikari_cp:raw}\"}[$__rate_interval])",
@@ -2974,7 +2914,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus_datasource"
+                "uid": "cortex_datasource"
               },
               "exemplar": false,
               "expr": "rate(hikaricp_connections_usage_seconds_sum{instance=\"$instance\", application=\"$application\", pool=\"${hikari_cp:raw}\"}[$__rate_interval]) / rate(hikaricp_connections_usage_seconds_count{instance=\"$instance\", application=\"$application\", pool=\"${hikari_cp:raw}\"}[$__rate_interval])",
@@ -2988,7 +2928,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus_datasource"
+                "uid": "cortex_datasource"
               },
               "exemplar": false,
               "expr": "hikaricp_connections_usage_seconds_max{instance=\"$instance\", application=\"$application\", pool=\"${hikari_cp:raw}\"}",
@@ -3086,7 +3026,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus_datasource"
+                "uid": "cortex_datasource"
               },
               "exemplar": false,
               "expr": "rate(hikaricp_connections_acquire_seconds_sum{instance=\"$instance\", application=\"$application\", pool=\"${hikari_cp:raw}\"}[$__rate_interval]) / rate(hikaricp_connections_acquire_seconds_count{instance=\"$instance\", application=\"$application\", pool=\"${hikari_cp:raw}\"}[$__rate_interval])",
@@ -3100,7 +3040,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus_datasource"
+                "uid": "cortex_datasource"
               },
               "exemplar": false,
               "expr": "hikaricp_connections_acquire_seconds_max{instance=\"$instance\", application=\"$application\", pool=\"${hikari_cp:raw}\"}",
@@ -3198,7 +3138,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus_datasource"
+                "uid": "cortex_datasource"
               },
               "exemplar": false,
               "expr": "rate(hikaricp_connections_creation_seconds_sum{instance=\"$instance\", application=\"$application\", pool=\"${hikari_cp:raw}\"}[$__rate_interval]) / rate(hikaricp_connections_creation_seconds_count{instance=\"$instance\", application=\"$application\", pool=\"${hikari_cp:raw}\"}[$__rate_interval])",
@@ -3212,7 +3152,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prometheus_datasource"
+                "uid": "cortex_datasource"
               },
               "exemplar": false,
               "expr": "hikaricp_connections_creation_seconds_max{instance=\"$instance\", application=\"$application\", pool=\"${hikari_cp:raw}\"}",
@@ -3341,7 +3281,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "tomcat_sessions_active_current_sessions{instance=\"$instance\", application=\"$application\"}",
@@ -3352,7 +3292,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "tomcat_sessions_active_max_sessions{instance=\"$instance\", application=\"$application\"}",
@@ -3451,7 +3391,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "rate(tomcat_sessions_created_sessions_total{instance=\"$instance\", application=\"$application\"}[$__rate_interval])",
@@ -3462,7 +3402,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "rate(tomcat_sessions_expired_sessions_total{instance=\"$instance\", application=\"$application\"}[$__rate_interval])",
@@ -3474,7 +3414,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "rate(tomcat_sessions_rejected_sessions_total{instance=\"$instance\", application=\"$application\"}[$__rate_interval])",
@@ -3586,7 +3526,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "process_cpu_usage{instance=\"$instance\", application=\"$application\"}",
@@ -3598,7 +3538,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "system_cpu_usage{instance=\"$instance\", application=\"$application\"}",
@@ -3696,7 +3636,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "jvm_threads_states_threads{instance=\"$instance\", application=\"$application\"}",
@@ -3808,7 +3748,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "jvm_threads_daemon_threads{instance=\"$instance\", application=\"$application\"}",
@@ -3820,7 +3760,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "jvm_threads_live_threads{instance=\"$instance\", application=\"$application\"} - jvm_threads_daemon_threads{instance=\"$instance\", application=\"$application\"}",
@@ -3832,7 +3772,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "jvm_threads_peak_threads{instance=\"$instance\", application=\"$application\"}",
@@ -3943,7 +3883,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "sum(jvm_memory_used_bytes{instance=\"$instance\", application=\"$application\", area=\"heap\"})",
@@ -3956,7 +3896,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "sum(jvm_memory_used_bytes{instance=\"$instance\", application=\"$application\", area=\"nonheap\"})",
@@ -3968,7 +3908,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "sum(jvm_memory_used_bytes{instance=\"$instance\", application=\"$application\"})",
@@ -4066,7 +4006,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "jvm_memory_used_bytes{instance=\"$instance\", application=\"$application\", area=\"heap\"}",
@@ -4164,7 +4104,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "jvm_memory_used_bytes{instance=\"$instance\", application=\"$application\", area=\"nonheap\"}",
@@ -4276,7 +4216,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "rate(jvm_gc_pause_seconds_count{instance=\"$instance\", application=\"$application\"}[$__rate_interval])",
@@ -4376,7 +4316,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "rate(jvm_gc_pause_seconds_sum{application=\"$application\", instance=\"$instance\"}[$__rate_interval])/rate(jvm_gc_pause_seconds_count{application=\"$application\", instance=\"$instance\"}[$__rate_interval])",
@@ -4390,7 +4330,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "jvm_gc_pause_seconds_max{application=\"$application\", instance=\"$instance\"}",
@@ -4489,7 +4429,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "rate(jvm_gc_memory_allocated_bytes_total{instance=\"$instance\", application=\"$application\"}[$__rate_interval])",
@@ -4503,7 +4443,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "rate(jvm_gc_memory_promoted_bytes_total{instance=\"$instance\", application=\"$application\"}[$__rate_interval])",
@@ -4628,7 +4568,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "rate(log4j2_events_total{instance=\"$instance\", application=\"$application\"}[$__rate_interval])",
@@ -4723,7 +4663,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "process_files_open_files{instance=\"$instance\", application=\"$application\"}",
@@ -4742,7 +4682,7 @@
   "style": "dark",
   "tags": [
     "default",
-    "spring"
+    "jvm"
   ],
   "templating": {
     "list": [
@@ -4866,7 +4806,7 @@
     ]
   },
   "timezone": "",
-  "title": "Spring",
+  "title": "JVM(Spring)",
   "uid": "spring_dashboard",
   "version": 1,
   "weekStart": ""

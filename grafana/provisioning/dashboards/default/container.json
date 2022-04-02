@@ -101,7 +101,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "container_start_time_seconds{instance=\"$instance\", name=\"${container:raw}\"} * 1000",
@@ -161,7 +161,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "timestamp(container_start_time_seconds{instance=\"$instance\", name=\"${container:raw}\"}) - container_start_time_seconds{instance=\"$instance\", name=\"${container:raw}\"}",
@@ -261,7 +261,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "container_cpu_load_average_10s{instance=\"$instance\", name=\"${container:raw}\"} / 1000",
@@ -321,7 +321,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "container_tasks_state{instance=\"$instance\", name=\"${container:raw}\"}",
@@ -430,7 +430,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "avg (rate(container_cpu_usage_seconds_total{instance=\"$instance\", name=\"${container:raw}\"}[$__rate_interval]))",
@@ -525,7 +525,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "rate(container_cpu_system_seconds_total{instance=\"$instance\", name=\"${container:raw}\"}[$__rate_interval]) / scalar(machine_cpu_cores{instance=\"$instance\"})",
@@ -537,7 +537,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "rate(container_cpu_user_seconds_total{instance=\"$instance\", name=\"${container:raw}\"}[$__rate_interval]) / scalar(machine_cpu_cores{instance=\"$instance\"})",
@@ -621,7 +621,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "container_spec_memory_limit_bytes{instance=\"$instance\", name=\"${container:raw}\"}",
@@ -692,7 +692,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "container_spec_memory_swap_limit_bytes{instance=\"$instance\", name=\"${container:raw}\"} - container_spec_memory_limit_bytes{instance=\"$instance\", name=\"${container:raw}\"}",
@@ -768,7 +768,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "container_memory_usage_bytes{instance=\"$instance\", name=\"${container:raw}\"} / (container_spec_memory_limit_bytes{instance=\"$instance\", name=\"${container:raw}\"} > 0)",
@@ -845,7 +845,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "(container_memory_swap{instance=\"$instance\", name=\"${container:raw}\"} / ((container_spec_memory_swap_limit_bytes{instance=\"$instance\", name=\"${container:raw}\"} > 0) - container_spec_memory_limit_bytes{instance=\"$instance\", name=\"${container:raw}\"}))",
@@ -951,7 +951,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "container_memory_usage_bytes{instance=\"$instance\", name=\"${container:raw}\"}",
@@ -962,7 +962,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "container_memory_working_set_bytes{instance=\"$instance\",name=\"${container:raw}\"}",
@@ -974,7 +974,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "container_memory_rss{instance=\"$instance\", name=\"${container:raw}\"}",
@@ -1069,7 +1069,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "container_memory_cache{instance=\"$instance\", name=\"${container:raw}\"}",
@@ -1163,7 +1163,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus_datasource"
+            "uid": "cortex_datasource"
           },
           "exemplar": false,
           "expr": "container_memory_swap{instance=\"$instance\", name=\"${container:raw}\"}",

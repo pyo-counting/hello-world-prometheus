@@ -25,6 +25,39 @@ Prometheus hello world 프로젝트
     - ./alertmanager/alertmanager.yml
         - global.slack_api_url: slack webhook URL 설정 필요
 
+추가적으로 SpringBoot metrics 수집을 위한 maven pom.xml, application.yml 및 JMX exporter metrics 수집을 위한 설정은 아래와 같다.
+
+- SpringBoot
+    - pom.xml
+      ```xml
+      <dependency>
+        <groupId>io.micrometer</groupId>
+        <artifactId>micrometer-registry-prometheus</artifactId>
+        <version>1.8.2</version>
+      </dependency>
+      ```
+    - application.yml
+      ```yml
+      management:
+        endpoint:
+          enables: true
+        metrics:
+          tags:
+            application: springboot
+        endpoints:
+          web:
+            exposure:
+              include: "*"
+      ```
+- JMX-exporter
+    - JVM 실행 옵션
+      ```bash
+      # non-tomcat JVM application(>= java 7)의 경우
+      -javaagent:${라이브러리_디렉토리_경로}/jmx_prometheus_javaagent-0.16.1.jar=${포트}:${설정파일_디렉토리_경로}/jmx_exporter_config.yml
+      # tomcat(>= java 7) JVM의 경우
+      CATALINA_OPTS="${CATALINA_OPTS} -javaagent:${라이브러리_디렉토리_경로}/jmx_prometheus_javaagent-0.16.1.jar=${포트}:${설정파일_디렉토리_경로}/jmx_exporter_config.yml" 
+      ```
+
 ## 3. Installation
 Docker를 이용해 설치 및 실행하며 여러 docker image를 사용하기 때문에 docker-compose를 이용해 container를 관리한다.
 
@@ -39,6 +72,7 @@ Docker를 이용해 설치 및 실행하며 여러 docker image를 사용하기 
 - Prometheus: [v2.32.0](https://github.com/prometheus/prometheus/releases/tag/v2.32.0)
 - Cadvisor: [v0.37.5](https://github.com/google/cadvisor/releases/tag/v0.37.5)
 - Node-exporter: [v1.3.1](https://github.com/prometheus/node_exporter/releases/tag/v1.3.1)
+- JMX-exporter: [0.16.1](https://github.com/prometheus/jmx_exporter/releases/tag/parent-0.16.1)
 - Grafana: [8.3.3](https://github.com/grafana/grafana/releases/tag/v8.3.3)
 - SpringBoot (maven dependency):
     - spring-boot-starter-parent: [2.3.1.RELEASE](https://github.com/spring-projects/spring-boot/releases/tag/v2.3.1.RELEASE)
@@ -47,20 +81,20 @@ Docker를 이용해 설치 및 실행하며 여러 docker image를 사용하기 
     
 ### 3.3 Step by step
 1. project clone하기
-   ```
+   ```bash
    git clone https://github.com/pyo-counting/hello-world-prometheus.git
    ```
 2. 프로젝트 디렉토리로 이동
-   ```
+   ```bash
    cd hello-world-prometheus
    ```
 3. docker-compose 실행 및 확인
-   ```
+   ```bash
    docker-compsoe up -d
    docker-compsoe ps
    ```
 3. docker-compose down
-   ```
+   ```bash
    docker-compsoe down -v
    ```
 
@@ -74,6 +108,7 @@ Docker를 이용해 설치 및 실행하며 여러 docker image를 사용하기 
 - [Prometheus](https://prometheus.io/docs/introduction/overview/)
 - [Cadvisor](https://github.com/google/cadvisor)
 - [Node-exporter](https://github.com/prometheus/node_exporter)
+- [JMX-exporter](https://github.com/prometheus/jmx_exporter)
 - [Grafana](https://grafana.com/docs/grafana/latest/)
 - [SpringBoot](https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html)
 - [Alertmanager](https://prometheus.io/docs/alerting/latest/overview/)

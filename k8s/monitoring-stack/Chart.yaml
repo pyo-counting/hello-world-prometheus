@@ -1,0 +1,25 @@
+apiVersion: v2
+name: monitoring-stack
+version: 0.1.0
+#kubeVersion:
+description: Monitoring stack based on Cortex and Loki
+type: application
+#keyworkds:
+#home:
+#sources:
+dependencies:
+  - name: prometheus
+    version: 15.10.3
+    repository: https://prometheus-community.github.io/helm-charts
+    #condition:
+    #tags:
+    #import-values:
+    #alias:
+maintainers:
+  - name: pyoseyeol
+    email: pyo-counting@kakao.com
+    url: https://github.com/pyo-counting
+#icon:
+appVersion: 0.1.0
+#deprecated:
+#annotations:

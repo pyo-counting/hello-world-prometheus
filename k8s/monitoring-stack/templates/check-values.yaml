@@ -1,0 +1,9 @@
+# required check for .Values.prometheus.server.service.externalIPs
+{{- if empty .Values.prometheus.server.service.externalIPs -}}
+  {{- fail "Required Values.prometheus.server.service.externalIPs"}}
+{{- end }}
+
+# required check for .Values.prometheus.server.persistentVolume.localPersistentVolume.nodeAffinity
+{{- if empty .Values.prometheus.server.persistentVolume.localPersistentVolume.nodeAffinity -}}
+  {{- fail "Required .Values.prometheus.server.persistentVolume.localPersistentVolume.nodeAffinity" -}}
+{{- end }}
